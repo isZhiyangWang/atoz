@@ -4,7 +4,7 @@ This is the work documentaion by Zhiyang for course [Programming from A to Z](ht
 
 ## Work List
 
-* [week1-constrained writing](./week1.md)
+* [week1-constrained writing](./week1)
 
 
 

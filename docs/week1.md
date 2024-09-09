@@ -4,7 +4,7 @@ The Sentence Processor is a web-based tool designed to enhance the understanding
 
 The primary goal of this project is to help users better understand complex sentences by providing definitions for each word, allowing for more in-depth comprehension of the content. This tool can be especially useful for students, educators, and language learners who want to break down complicated text into simpler, more understandable components.
 
-[Link to Use the Sentence Processor](../week1/index.html)
+[Link to Use the Sentence Processor](https://zhiyangwang.site/atoz/week1/)
 
 
 - **Input a Sentence**: The input box is prefilled with a sample sentence. You can modify this sentence or replace it with your own. The input must be a valid sentence ending with a period.
