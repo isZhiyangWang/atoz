@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Processor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            resize: none;
+            overflow: hidden;
+            min-height: 60px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        p#output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sentence Processor</h1>
+        <textarea id="sentenceInput" placeholder="Enter a sentence">This course is a survey of programming strategies and techniques for the procedural analysis and generation of text-based data.</textarea>
+        <button onclick="processSentence()">Submit</button>
+        <p id="output"></p>
+    </div>
+
+    <script>
+        const textarea = document.getElementById('sentenceInput');
+
+        // Adjust the height of the textarea based on content
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+
+        // Initial adjustment on page load
+        textarea.style.height = (textarea.scrollHeight) + 'px';
+
+        async function processSentence() {
+            const sentence = textarea.value.trim();
+
+            // Check if the input is a valid sentence
+            if (!sentence || !sentence.endsWith('.')) {
+                alert("Please enter a valid sentence ending with a period.");
+                return;
+            }
+
+            // Regular expression to match words and keep punctuation marks
+            const regex = /\w+|[.,:]/g;
+            const words = sentence.match(regex);
+
+            const processedWords = [];
+
+            // Iterate over each word
+            for (const word of words) {
+                // Skip API call for punctuation marks
+                if (word === ',' || word === '.' || word === ':') {
+                    processedWords.push(word);
+                    continue;
+                }
+
+                const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+
+                    // Check if there is a valid result, and replace the word with the definition
+                    if (data && data[0] && data[0].meanings && data[0].meanings[0] && data[0].meanings[0].definitions && data[0].meanings[0].definitions[0]) {
+                        const definition = data[0].meanings[0].definitions[0].definition;
+                        processedWords.push(definition);
+                    } else {
+                        processedWords.push(word); // Keep the old word if no valid result
+                    }
+                } catch (error) {
+                    processedWords.push(word); // Handle fetch error, keep the old word
+                }
+            }
+
+            // Join the processed words back into a sentence and display the result
+            const updatedSentence = processedWords.join(' ');
+            document.getElementById('output').textContent = updatedSentence;
+        }
+    </script>
+</body>
+</html>
