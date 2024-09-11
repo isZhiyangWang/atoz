@@ -2,8 +2,6 @@
 
 The Complex your sentence is a web-based tool designed to enhance the understanding of text-based data by breaking down sentences into individual words and retrieving their definitions. This application takes a sentence as input, analyzes it, and replaces each word with its corresponding definition from an online [Free Dictionary API](https://dictionaryapi.dev/). The tool preserves punctuation, making it easy to interpret the processed sentence.
 
-The primary goal of this project is to help users better understand complex sentences by providing definitions for each word, allowing for more in-depth comprehension of the content. This tool can be especially useful for students, educators, and language learners who want to break down complicated text into simpler, more understandable components.
-
 [Link to Use the Complex your sentence](https://zhiyangwang.site/atoz/week1/)
 
 
