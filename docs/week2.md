@@ -1,6 +1,6 @@
 # Complex your sentence - V-2.0 
 
-【link to project】(https://iszhiyang.com/atoz/week2/)
+[link to project](https://iszhiyang.com/atoz/week2/)
 
 Welcome to Complex your sentence - V-2.0! In this new version, I've added some fun, interactive features: 
 
